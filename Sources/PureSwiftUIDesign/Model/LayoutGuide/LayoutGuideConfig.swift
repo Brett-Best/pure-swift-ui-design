@@ -10,9 +10,9 @@ import Foundation
 
 public struct LayoutGuideConfig: Shape {
  
-    fileprivate let layoutProvider: (CGRect) -> LayoutGuide
-    fileprivate let layoutPathProvider: (LayoutGuide, CGRect) -> Path
-    
+    fileprivate let layoutProvider: @Sendable (CGRect) -> LayoutGuide
+    fileprivate let layoutPathProvider: @Sendable (LayoutGuide, CGRect) -> Path
+
     public func path(in rect: CGRect) -> Path {
         let layout = layoutProvider(rect)
         return layoutPathProvider(layout, rect)
@@ -285,6 +285,7 @@ public extension LayoutGuideConfig {
     }
 }
 
+@Sendable
 private func gridLayoutPathProvider(_ gridLayout: LayoutGuide, rect: CGRect) -> Path {
     var path = Path()
     let layoutCopy = gridLayout
@@ -299,6 +300,7 @@ private func gridLayoutPathProvider(_ gridLayout: LayoutGuide, rect: CGRect) -> 
     return path
 }
 
+@Sendable
 private func polarLayoutPathProvider(_ gridLayout: LayoutGuide, rect: CGRect) -> Path {
     var path = Path()
     let layoutCopy = gridLayout
