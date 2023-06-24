@@ -6,7 +6,7 @@
 //  Copyright © 2019 Adam Fordyce. All rights reserved.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS) && !os(xrOS)
 import UIKit
 
 public extension UIScreen {
